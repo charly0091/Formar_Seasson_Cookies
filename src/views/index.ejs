@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/styles.css
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <title>Seasson y Cookies </title>
+         <!-- FontAwesome-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+    </head>
+<body>
+    <header>
+        <h1>Seasson y Cookies</h1>
+    </header>
+    <main>
+        <body>
+            <style>
+                body {
+                  background-color: "<%= session.userData.color %>";
+                }
+            </style>
+            <h2>Formulario</h2>
+            <form action="/form" method="POST">
+                <div>
+                    <label for="name">Ingrese su nombre</label>
+                    <input class="<%= locals.errors && errors.name ? 'is-invalid' : null%>" type="text" name="name" id="name" value="<%= locals.old && locals.old.name ? locals.old.name : null %>">
+                    <small class="text-danger ms-2"><%= locals.errors && errors.name ? errors.name.msg : null%></small>
+                </div>
+                <div>
+                    <label for="color">Seleccione un color</label>
+                    <select class="<%= locals.errors && errors.color ? 'is-invalid' : null%>" name="color" id="color">
+                        <option value="" selected hidden>Color</option>
+                        <% colores.forEach(color=> { %>
+                        <option value="<%= color.valor %>" <%= locals.old && color.valor == old.color ? 'selected' : null %>><%= color.texto %></option>
+                <% }) %>
+                    </select>
+                    <small class="text-danger ms-2"><%= locals.errors && errors.color ? errors.color.msg : null%></small>
+                </div>
+                <div>
+                    <label for="mail">Ingrese su mail</label>
+                    <input class="<%= locals.errors && errors.mail ? 'is-invalid' : null%>" type="email" name="mail" id="mail"  value="<%= locals.old && locals.old.mail ? locals.old.mail : null %>">
+                    <small class="text-danger ms-2"><%= locals.errors && errors.mail ? errors.mail.msg : null%></small>
+                </div>
+                <div>
+                    <label for="age">Ingrese su edad</label>
+                    <input class="<%= locals.errors && errors.age ? 'is-invalid' : null%>" type="text" name="age" id="age" value="<%= locals.old && locals.old.age ? locals.old.age : null %>">
+                    <small class="text-danger ms-2"><%= locals.errors && errors.age ? errors.age.msg : null%></small>
+                </div>
+                <div>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+            <% if (session.userData) { %>
+                <div>
+                    <h2>Datos del usuario</h2>
+                    <p>Hola <%= session.userData.name %>,</p>
+                    <p>elegiste el color: <%= session.userData.colorTexto %></p>
+                    <p>tu mail es: <%= session.userData.mail %></p>
+                    <p>y tu edad es: <%= session.userData.age %></p>
+                </div>
+            <% } %>
+        </body>
+    </main>
+</body>
+</html>
