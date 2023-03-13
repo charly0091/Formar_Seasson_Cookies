@@ -6,10 +6,11 @@ const colores = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/colores
 
 module.exports = {
     getMainPage: (req, res) => {
-
+        if(!req.session.userData){
         req.session.userData = {
             color: "white",
         }
+    }
         
         res.render('index' , {session: req.session, colores});
     },
