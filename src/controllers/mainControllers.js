@@ -34,8 +34,9 @@ module.exports = {
                 old: req.body,
                 colores})
         }
+    },
+    gracias: (req, res) => {
 
-    
-
+        res.render('gracias', {session: req.session})
     }
 }
