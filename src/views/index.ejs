@@ -18,7 +18,7 @@
         <body>
             <style>
                 body {
-                  background-color: <%= session.userData.color %>;
+                  background-color: <%= session.userData ? session.userData.color : null %>;
                 }
             </style>
             <h2>Formulario</h2>
@@ -49,6 +49,13 @@
                     <input class="<%= locals.errors && errors.age ? 'is-invalid' : null%>" type="text" name="age" id="age" value="<%= locals.old && locals.old.age ? locals.old.age : null %>">
                     <small class="text-danger ms-2"><%= locals.errors && errors.age ? errors.age.msg : null%></small>
                 </div>
+                <div>
+                    <label for="recordar">Recordar</label>
+                    <input type="checkbox" name="recordar" id="recordar">
+                </div>
+                <div>
+                    <a href="/borrar">Borrar datos</a>
+                </div>    
                 <div>
                     <button type="submit">Enviar</button>
                 </div>

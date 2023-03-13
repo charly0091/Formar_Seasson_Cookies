@@ -6,12 +6,7 @@ const colores = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/colores
 
 module.exports = {
     getMainPage: (req, res) => {
-        if(!req.session.userData){
-        req.session.userData = {
-            color: "white",
-        }
-    }
-        
+
         res.render('index' , {session: req.session, colores});
     },
     getData: (req, res) => {
@@ -27,6 +22,17 @@ module.exports = {
                 age: req.body.age,
             }
 
+            let cookieTime = (1000 * 60 * 60); /* mSeg * seg * min * hor * dia */
+
+                    if(req.body.recordar){
+                        res.cookie("cookieColor",
+                        req.session.userData,
+                        {
+                            expires: new Date(Date.now() + cookieTime),
+                            httpOnly: true
+                        })
+                    }
+
             res.render('index', {session: req.session, colores})
         } else {
             res.render('index', {
@@ -39,5 +45,11 @@ module.exports = {
     gracias: (req, res) => {
 
         res.render('gracias', {session: req.session})
-    }
+    },
+    borrar: (req, res) => {
+            
+            res.clearCookie("cookieColor");
+            req.session.destroy();
+            res.redirect("/");
+        }
 }

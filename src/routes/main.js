@@ -7,6 +7,7 @@ const controller = require('../controllers/mainControllers');
 
 router.get('/', controller.getMainPage);
 router.post("/form" , validation , controller.getData);
-router.get("/gracias" , controller.gracias)
+router.get("/gracias" , controller.gracias);
+router.get("/borrar" , controller.borrar);
 
 module.exports = router; 

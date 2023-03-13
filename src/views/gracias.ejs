@@ -9,7 +9,7 @@
 <body>
     <style>
         body {
-          background-color: <%= session.userData.color %>;
+            background-color: <%= session.userData ? session.userData.color : null %>;
         }
     </style>
     <h2>Gracias</h1>
