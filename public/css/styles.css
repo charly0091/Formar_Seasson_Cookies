@@ -1,0 +1,18 @@
+header{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 25% 4rem 25%;
+    padding: 3rem;
+    border: 1px black solid;
+}
+
+.formContainer .form-group{
+    width: 100%;
+}
