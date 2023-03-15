@@ -12,9 +12,12 @@
             background-color: <%= session.userData ? session.userData.color : null %>;
         }
     </style>
-    <h2>Gracias</h1>
     <h2><a href="/">formulario</a></h2>
+    <% if(session.userData) { %>
     <p><%= session.userData.name %>, gracias por visitarnos.</p>
+    <% } else { %>
+    <p>Aun no cargo datos en el formulario</p>
+    <% } %>
     
 </body>
 </html>
